@@ -106,3 +106,46 @@ Payload:
 ```
 {message: "Se ha borrado guillermu@thebridgeschool.es"}
 ```
+
+---
+
+## Mejoras añadidas
+
+- **Queries externalizadas** en `queries/authors.queries.js` y `queries/entries.queries.js` (incluye crear y borrar tablas).
+- **Conexión** en `config/db_pgsql.js`.
+- **Middlewares** en `middlewares/`:
+  - `error404.js` → cualquier ruta que no existe.
+  - `checkApiKey.js` → POST, PUT y DELETE necesitan `?API_KEY=...` (la del `.env`).
+  - `morgan.js` → log de peticiones en consola, ocultando la API_KEY.
+- **Helmet** para añadir cabeceras de seguridad.
+- **express-validator** en todas las rutas (`validations/`).
+- **Authors**:
+  - Solo se crea si no existe ya ese email (409).
+  - Puede cambiar su email enviando `new_email` en el PUT.
+  - Al borrar un author se borran también sus entries (borrado en cascada, en una transacción).
+- **Entries**: no se pueden crear ni editar con un email de autor que no existe (404).
+
+## Arrancar en local
+
+```bash
+npm install
+cp .env.example .env   # y rellenar los datos
+npm run init-db        # crea las tablas y mete datos de ejemplo (si están vacías)
+npm run dev
+```
+
+## Desplegar en Render
+
+1. **BBDD**: en Render → *New* → *Postgres* (plan Free).
+2. **API**: en Render → *New* → *Web Service* → este repo de GitHub.
+   - Build command: `npm install`
+   - Start command: `npm start`
+   - Variables de entorno:
+     - `DATABASE_URL` → la *Internal Database URL* de la BBDD de Render.
+     - `API_KEY` → la clave que quieras para POST, PUT y DELETE.
+3. Al arrancar, la API crea las tablas y mete los datos de ejemplo si la BBDD está vacía.
+
+API desplegada: https://entries-authors-api.onrender.com
+
+- https://entries-authors-api.onrender.com/api/entries
+- https://entries-authors-api.onrender.com/api/authors

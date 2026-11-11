@@ -1,0 +1,140 @@
+### Extensión "REST Client" de VS Code → pulsa "Send Request"
+@base = http://localhost:3000/api
+@key = API_KEY=hola123
+
+############ ENTRIES ############
+
+### Todas las entries (con datos del autor)
+GET {{base}}/entries
+
+### Entries de un autor
+GET {{base}}/entries?email=alejandru@thebridgeschool.es
+
+### Crear entry → 201
+POST {{base}}/entries?{{key}}
+Content-Type: application/json
+
+{
+  "title": "noticia desde Node",
+  "content": "va a triunfar esto2",
+  "email": "alejandru@thebridgeschool.es",
+  "category": "sucesos"
+}
+
+### Crear la MISMA entry otra vez → 409 (título UNIQUE)
+POST {{base}}/entries?{{key}}
+Content-Type: application/json
+
+{
+  "title": "noticia desde Node",
+  "content": "repetida",
+  "email": "alejandru@thebridgeschool.es",
+  "category": "sucesos"
+}
+
+### Modificar entry → 200
+PUT {{base}}/entries?{{key}}
+Content-Type: application/json
+
+{
+  "title": "noticia desde Node",
+  "new_title": "noticia desde Node editada",
+  "content": "contenido nuevo",
+  "email": "birja@thebridgeschool.es",
+  "category": "Software"
+}
+
+### Borrar entry → 200
+DELETE {{base}}/entries?{{key}}
+Content-Type: application/json
+
+{ "title": "noticia desde Node editada" }
+
+############ AUTHORS ############
+
+### Todos los autores
+GET {{base}}/authors
+
+### Un autor
+GET {{base}}/authors?email=alejandru@thebridgeschool.es
+
+### Crear autor → 201
+POST {{base}}/authors?{{key}}
+Content-Type: application/json
+
+{
+  "name": "Pepe",
+  "surname": "Pruebas",
+  "email": "pepe@thebridgeschool.es",
+  "image": "https://randomuser.me/api/portraits/thumb/men/1.jpg"
+}
+
+### Actualizar autor (y cambiar su email con new_email) → 200
+PUT {{base}}/authors?{{key}}
+Content-Type: application/json
+
+{
+  "name": "Pepe",
+  "surname": "Editado",
+  "email": "pepe@thebridgeschool.es",
+  "image": "https://randomuser.me/api/portraits/thumb/men/2.jpg"
+}
+
+### Borrar autor → 200
+DELETE {{base}}/authors?{{key}}
+Content-Type: application/json
+
+{ "email": "pepe@thebridgeschool.es" }
+
+### Borrar autor con entries → 200 (se borran también sus entries)
+DELETE {{base}}/authors?{{key}}
+Content-Type: application/json
+
+{ "email": "birja@thebridgeschool.es" }
+
+############ VALIDACIONES (express-validator) → todas deben dar 400 ############
+
+### Email mal escrito en el query
+GET {{base}}/entries?email=no-es-un-email
+
+### Entry sin datos → lista de errores
+POST {{base}}/entries?{{key}}
+Content-Type: application/json
+
+{}
+
+### Category de más de 15 caracteres
+POST {{base}}/entries?{{key}}
+Content-Type: application/json
+
+{
+  "title": "Prueba validación",
+  "content": "contenido",
+  "email": "alejandru@thebridgeschool.es",
+  "category": "categoriademasiadolarga"
+}
+
+### Autor con image que no es URL y email inválido
+POST {{base}}/authors?{{key}}
+Content-Type: application/json
+
+{
+  "name": "Pepe",
+  "surname": "Pruebas",
+  "email": "pepe-sin-arroba",
+  "image": "foto"
+}
+
+############ API_KEY → 401 ############
+
+### Sin API_KEY
+POST {{base}}/entries
+Content-Type: application/json
+
+{}
+
+### API_KEY errónea
+POST {{base}}/entries?API_KEY=mal
+Content-Type: application/json
+
+{}

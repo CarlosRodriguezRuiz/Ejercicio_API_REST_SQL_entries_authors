@@ -54,3 +54,9 @@ ORDER BY entries.title;
 UPDATE entries
 	SET content='Back is back', date='2024-06-17', id_author=(SELECT id_author FROM authors WHERE email='alvaru@thebridgeschool.es'), category='Software'
 	WHERE title='Estamos de Lunes de Back';
+
+-- =====================================================
+-- PASO 1: No permitir entries con el título repetido
+-- =====================================================
+ALTER TABLE entries
+  ADD CONSTRAINT unique_title UNIQUE (title);
