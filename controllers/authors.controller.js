@@ -1,4 +1,11 @@
-// CONTROLLER de authors
+/**
+ * CONTROLLER · authors: decide qué responder
+ *
+ * Quién lo llama: routes/authors.routes.js (cuando ya han pasado API_KEY y validaciones)
+ * A quién llama:  models/authors.model.js
+ * Lee req (body o query), pide los datos al model y responde con res.status().json().
+ * Códigos: 200 ok · 201 creado · 404 no existe · 409 repetido · 500 error de BBDD
+ */
 const author = require("../models/authors.model");
 
 // GET /api/authors                                     → todos

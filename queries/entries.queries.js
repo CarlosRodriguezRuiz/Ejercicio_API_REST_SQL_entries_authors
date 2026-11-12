@@ -1,4 +1,9 @@
-// SQL de las entries. Los valores van siempre con $1, $2... (nunca concatenados)
+/**
+ * QUERIES · SQL de la tabla entries
+ *
+ * Solo texto SQL, no ejecuta nada. Lo importa models/entries.model.js.
+ * Los valores van con $1, $2... y se pasan aparte: así se evita la inyección SQL.
+ */
 
 // Columnas que devolvemos: datos de la entry + datos del autor, SIN id_entry
 const SELECT_ENTRIES = `

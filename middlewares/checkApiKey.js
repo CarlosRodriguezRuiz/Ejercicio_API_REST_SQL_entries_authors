@@ -1,3 +1,10 @@
+/**
+ * MIDDLEWARE · checkApiKey
+ *
+ * Quién lo usa: routes/*.routes.js, solo en POST, PUT y DELETE (leer es libre).
+ * Si la clave falta o no coincide con la del .env / Render → 401 y se corta aquí.
+ * Si es correcta → next() y sigue a las validaciones.
+ */
 // Comprueba que la petición trae la API_KEY correcta por query param
 // POST http://localhost:3000/api/entries?API_KEY=hola123
 const checkApiKey = (req, res, next) => {

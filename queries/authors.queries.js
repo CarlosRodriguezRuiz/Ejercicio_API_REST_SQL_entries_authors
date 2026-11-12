@@ -1,4 +1,9 @@
-// SQL de los authors
+/**
+ * QUERIES · SQL de la tabla authors
+ *
+ * Solo texto SQL, no ejecuta nada. Lo importa models/authors.model.js.
+ * Los valores van con $1, $2... y se pasan aparte: así se evita la inyección SQL.
+ */
 const queries = {
   // Crear / borrar la tabla
   createAuthorsTable: `

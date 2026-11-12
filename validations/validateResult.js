@@ -1,3 +1,6 @@
+/**
+ * VALIDATIONS · validateResult (último paso de cada lista de validaciones)
+ */
 // Middleware que se pone al FINAL de cada array de validaciones.
 // Si alguna validación ha fallado → responde 400 con la lista de errores.
 // Si todo está bien → next() y pasa al controller.

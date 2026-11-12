@@ -1,3 +1,11 @@
+/**
+ * ROUTES · /api/authors: qué pasa con cada método HTTP
+ *
+ * Quién lo usa: app.js → app.use("/api/authors", authorsRoutes)
+ * Cada ruta es una cadena de middlewares que se ejecutan en orden:
+ *   checkApiKey (solo POST/PUT/DELETE) → validaciones → controller
+ * Si uno responde (401, 400...), los siguientes ya no se ejecutan.
+ */
 const router = require("express").Router();
 const authorsController = require("../controllers/authors.controller");
 const checkApiKey = require("../middlewares/checkApiKey");

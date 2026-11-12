@@ -1,4 +1,10 @@
-// Validaciones de authors con express-validator (chain method: body(), query())
+/**
+ * VALIDATIONS · authors (express-validator)
+ *
+ * Quién lo usa: routes/authors.routes.js, entre checkApiKey y el controller.
+ * Cada regla (body("email")...) apunta los errores en req; validateResult los revisa
+ * al final y responde 400 si hay alguno. Si no, pasa al controller.
+ */
 const { body, query } = require("express-validator");
 const validateResult = require("./validateResult");
 

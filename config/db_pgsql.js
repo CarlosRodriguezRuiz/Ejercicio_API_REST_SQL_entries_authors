@@ -1,4 +1,10 @@
-// Conexión a PostgreSQL con los datos del .env
+/**
+ * CONFIG · Conexión a PostgreSQL
+ *
+ * Crea un "pool": un grupo de conexiones abiertas que se reutilizan.
+ * Lo usan los models (models/*.model.js) y scripts/initDb.js.
+ * Los datos de conexión salen del .env (en local) o de Render (DATABASE_URL).
+ */
 const { Pool } = require("pg");
 require("dotenv").config();
 

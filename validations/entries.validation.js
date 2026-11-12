@@ -1,4 +1,10 @@
-// Validaciones de entries con express-validator (chain method: body(), query())
+/**
+ * VALIDATIONS · entries (express-validator)
+ *
+ * Quién lo usa: routes/entries.routes.js, entre checkApiKey y el controller.
+ * Cada regla (body("title")...) apunta los errores en req; validateResult los revisa
+ * al final y responde 400 si hay alguno. Si no, pasa al controller.
+ */
 const { body, query } = require("express-validator");
 const validateResult = require("./validateResult");
 

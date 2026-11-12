@@ -1,4 +1,11 @@
-// CONTROLLER de entries: lee req, valida, llama al model y responde
+/**
+ * CONTROLLER · entries: decide qué responder
+ *
+ * Quién lo llama: routes/entries.routes.js (cuando ya han pasado API_KEY y validaciones)
+ * A quién llama:  models/entries.model.js (y authors.model para comprobar que el autor existe)
+ * Lee req (body o query), pide los datos al model y responde con res.status().json().
+ * Códigos: 200 ok · 201 creado · 404 no existe · 409 repetido · 500 error de BBDD
+ */
 const entry = require("../models/entries.model");
 const author = require("../models/authors.model");
 

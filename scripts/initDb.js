@@ -1,3 +1,9 @@
+/**
+ * SCRIPT · initDb: prepara la BBDD
+ *
+ * Quién lo usa: app.js al arrancar, y `npm run init-db` a mano.
+ * A quién llama: pool (config/db_pgsql.js) con el SQL de queries/*.queries.js
+ */
 // Crea las tablas y mete los datos de ejemplo en la BBDD del .env
 // Uso: npm run init-db
 // Sirve para preparar la BBDD de Render la primera vez (o la local).

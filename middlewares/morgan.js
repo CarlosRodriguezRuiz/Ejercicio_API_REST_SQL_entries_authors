@@ -1,3 +1,9 @@
+/**
+ * MIDDLEWARE · morgan (logger)
+ *
+ * Quién lo usa: app.js → app.use(morgan('[:date[iso]] :method :clean-url :status - :body'))
+ * Escribe una línea en consola por cada petición. En Render se ve en la pestaña Logs.
+ */
 // Morgan: registra en consola las peticiones HTTP que llegan al servidor
 const morgan = require("morgan");
 

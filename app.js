@@ -1,3 +1,16 @@
+/**
+ * APP.JS · Punto de entrada del servidor (lo arranca `npm start`)
+ *
+ * Recorrido de cada petición (el orden de los app.use() importa):
+ *   Cliente (Postman, navegador...)
+ *     → helmet         cabeceras de seguridad
+ *     → express.json   convierte el body JSON en req.body
+ *     → morgan         escribe la petición en consola
+ *     → /api/entries o /api/authors  → routes/*.routes.js
+ *     → error404       si ninguna ruta ha respondido
+ *
+ * Al arrancar también prepara la BBDD (scripts/initDb.js).
+ */
 require("dotenv").config();
 
 const express = require("express");

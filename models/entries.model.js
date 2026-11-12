@@ -1,5 +1,11 @@
-// MODEL de entries: la única capa que habla con la BBDD.
-// pool.query() abre la conexión, lanza el SQL y la libera solo.
+/**
+ * MODEL · entries: la capa que habla con la BBDD
+ *
+ * Quién lo llama: controllers/entries.controller.js
+ * A quién llama:  pool (config/db_pgsql.js) con el SQL de queries/entries.queries.js
+ * pool.query() coge una conexión, lanza el SQL y la devuelve al pool solo.
+ * Devuelve datos (filas o nº de filas afectadas), nunca responde al cliente.
+ */
 const pool = require("../config/db_pgsql");
 const queries = require("../queries/entries.queries");
 

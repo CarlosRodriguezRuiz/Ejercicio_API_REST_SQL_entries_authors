@@ -1,3 +1,11 @@
+/**
+ * ROUTES · /api/entries: qué pasa con cada método HTTP
+ *
+ * Quién lo usa: app.js → app.use("/api/entries", entriesRoutes)
+ * Cada ruta es una cadena de middlewares que se ejecutan en orden:
+ *   checkApiKey (solo POST/PUT/DELETE) → validaciones → controller
+ * Si uno responde (401, 400...), los siguientes ya no se ejecutan.
+ */
 const router = require("express").Router();
 const entriesController = require("../controllers/entries.controller");
 const checkApiKey = require("../middlewares/checkApiKey");

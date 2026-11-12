@@ -1,4 +1,10 @@
-// MODEL de authors
+/**
+ * MODEL · authors: la capa que habla con la BBDD
+ *
+ * Quién lo llama: controllers/authors.controller.js (y entries.controller para comprobar autores)
+ * A quién llama:  pool (config/db_pgsql.js) con el SQL de queries/authors.queries.js
+ * Devuelve datos (filas o nº de filas afectadas), nunca responde al cliente.
+ */
 const pool = require("../config/db_pgsql");
 const queries = require("../queries/authors.queries");
 
